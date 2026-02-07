@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台北美甲沙龍 | Taipei Nail Salon - Book Now</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pastel-pink: #FFD4E5;
+            --pastel-lavender: #E5D4FF;
+            --pastel-mint: #D4FFE5;
+            --pastel-peach: #FFE5D4;
+            --pastel-blue: #D4E5FF;
+            --soft-cream: #FFF8F0;
+            --deep-rose: #D4968E;
+            --text-primary: #4A4A4A;
+            --text-secondary: #7A7A7A;
+            --accent-gold: #E8C5A5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, var(--soft-cream) 0%, var(--pastel-peach) 50%, var(--pastel-pink) 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* Decorative Elements */
+        .background-decoration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.15;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--pastel-lavender);
+            top: -100px;
+            right: -50px;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            background: var(--pastel-mint);
+            bottom: 50px;
+            left: -50px;
+            animation-delay: 5s;
+        }
+
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            background: var(--pastel-blue);
+            top: 40%;
+            left: 10%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            33% {
+                transform: translate(30px, -30px) rotate(120deg);
+            }
+            66% {
+                transform: translate(-20px, 20px) rotate(240deg);
+            }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .logo-area {
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 300;
+            color: var(--deep-rose);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        .language-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .lang-btn {
+            padding: 8px 20px;
+            border: 2px solid var(--pastel-pink);
+            background: transparent;
+            color: var(--text-primary);
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn:hover {
+            background: var(--pastel-pink);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 212, 229, 0.4);
+        }
+
+        .lang-btn.active {
+            background: var(--pastel-pink);
+            box-shadow: 0 5px 15px rgba(255, 212, 229, 0.4);
+        }
+
+        .booking-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .progress-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .progress-line {
+            position: absolute;
+            top: 25px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--pastel-blue);
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .progress-line-fill {
+            position: absolute;
+            top: 25px;
+            left: 0;
+            height: 3px;
+            background: var(--deep-rose);
+            z-index: 1;
+            transition: width 0.5s ease;
+        }
+
+        .step-indicator {
+            text-align: center;
+            flex: 1;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--pastel-blue);
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: white;
+            transition: all 0.3s ease;
+            border: 3px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-indicator.active .step-circle {
+            background: var(--deep-rose);
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(212, 150, 142, 0.4);
+        }
+
+        .step-indicator.completed .step-circle {
+            background: var(--pastel-mint);
+        }
+
+        .step-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .step-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .step-content.active {
+            display: block;
+        }
+
+        .step-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--deep-rose);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .service-card {
+            padding: 25px;
+            border: 2px solid var(--pastel-pink);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 212, 229, 0.3);
+            border-color: var(--deep-rose);
+        }
+
+        .service-card.selected {
+            background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-lavender));
+            border-color: var(--deep-rose);
+            box-shadow: 0 10px 30px rgba(255, 212, 229, 0.4);
+        }
+
+        .service-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .service-details {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .service-price {
+            font-size: 1.3rem;
+            color: var(--deep-rose);
+            font-weight: 600;
+        }
+
+        .datetime-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        input[type="date"],
+        input[type="time"],
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid var(--pastel-pink);
+            border-radius: 15px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--deep-rose);
+            box-shadow: 0 5px 15px rgba(255, 212, 229, 0.3);
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .time-slot {
+            padding: 12px;
+            border: 2px solid var(--pastel-blue);
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            font-weight: 500;
+        }
+
+        .time-slot:hover {
+            background: var(--pastel-blue);
+            transform: translateY(-2px);
+        }
+
+        .time-slot.selected {
+            background: var(--deep-rose);
+            color: white;
+            border-color: var(--deep-rose);
+        }
+
+        .time-slot.unavailable {
+            opacity: 0.3;
+            cursor: not-allowed;
+            background: #f0f0f0;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 20px;
+        }
+
+        button {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back {
+            background: transparent;
+            border: 2px solid var(--pastel-pink);
+            color: var(--text-primary);
+        }
+
+        .btn-back:hover {
+            background: var(--pastel-pink);
+            transform: translateY(-2px);
+        }
+
+        .btn-next,
+        .btn-submit {
+            background: linear-gradient(135deg, var(--deep-rose), var(--pastel-pink));
+            color: white;
+            flex: 1;
+            box-shadow: 0 5px 20px rgba(212, 150, 142, 0.3);
+        }
+
+        .btn-next:hover,
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 150, 142, 0.4);
+        }
+
+        .summary-box {
+            background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-lavender));
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-label {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .summary-value {
+            color: var(--text-secondary);
+        }
+
+        .success-message {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .success-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            animation: scaleIn 0.5s ease;
+        }
+
+        .success-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--deep-rose);
+            margin-bottom: 15px;
+        }
+
+        .success-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .btn-new-booking {
+            background: linear-gradient(135deg, var(--deep-rose), var(--pastel-pink));
+            color: white;
+            padding: 15px 40px;
+            border-radius: 25px;
+            border: none;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(212, 150, 142, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-new-booking:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 150, 142, 0.4);
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            display: none;
+            border: 3px solid var(--pastel-pink);
+            border-top: 3px solid var(--deep-rose);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .info-box {
+            background: var(--pastel-blue);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--deep-rose);
+        }
+
+        .info-box h3 {
+            color: var(--deep-rose);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .info-box p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .info-box ul {
+            margin-top: 10px;
+            margin-left: 20px;
+            color: var(--text-secondary);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .booking-card {
+                padding: 30px 20px;
+            }
+
+            .service-grid,
+            .datetime-container {
+                grid-template-columns: 1fr;
+            }
+
+            .time-slots {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .step-label {
+                font-size: 0.8rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .time-slots {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-decoration">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="logo-area">
+                <h1 data-translate="site-title">Blossom Nails</h1>
+                <p class="subtitle" data-translate="site-subtitle">台北頂級美甲體驗</p>
+            </div>
+            <div class="language-selector">
+                <button class="lang-btn active" onclick="changeLanguage('en')">English</button>
+                <button class="lang-btn" onclick="changeLanguage('ko')">한국어</button>
+                <button class="lang-btn" onclick="changeLanguage('ja')">日本語</button>
+            </div>
+        </header>
+
+        <div class="booking-card">
+            <div class="progress-container">
+                <div class="progress-line"></div>
+                <div class="progress-line-fill" id="progressFill"></div>
+                
+                <div class="step-indicator active" id="indicator-1">
+                    <div class="step-circle">1</div>
+                    <div class="step-label" data-translate="step1-label">Choose Service</div>
+                </div>
+                
+                <div class="step-indicator" id="indicator-2">
+                    <div class="step-circle">2</div>
+                    <div class="step-label" data-translate="step2-label">Select Date & Time</div>
+                </div>
+                
+                <div class="step-indicator" id="indicator-3">
+                    <div class="step-circle">3</div>
+                    <div class="step-label" data-translate="step3-label">Your Information</div>
+                </div>
+            </div>
+
+            <div class="step-content active" id="step-1">
+                <h2 class="step-title" data-translate="step1-title">Choose Your Service</h2>
+                <div class="service-grid">
+                    <div class="service-card" onclick="selectService(this, 'classic', 1200)">
+                        <div class="service-name" data-translate="service-classic-name">Classic Manicure</div>
+                        <div class="service-details" data-translate="service-classic-details">Essential nail care with polish</div>
+                        <div class="service-price">NT$ 1,200</div>
+                    </div>
+                    
+                    <div class="service-card" onclick="selectService(this, 'gel', 1800)">
+                        <div class="service-name" data-translate="service-gel-name">Gel Manicure</div>
+                        <div class="service-details" data-translate="service-gel-details">Long-lasting gel polish</div>
+                        <div class="service-price">NT$ 1,800</div>
+                    </div>
+                    
+                    <div class="service-card" onclick="selectService(this, 'luxury', 2500)">
+                        <div class="service-name" data-translate="service-luxury-name">Luxury Spa Treatment</div>
+                        <div class="service-details" data-translate="service-luxury-details">Premium care with massage</div>
+                        <div class="service-price">NT$ 2,500</div>
+                    </div>
+                    
+                    <div class="service-card" onclick="selectService(this, 'art', 2200)">
+                        <div class="service-name" data-translate="service-art-name">Nail Art Design</div>
+                        <div class="service-details" data-translate="service-art-details">Custom creative designs</div>
+                        <div class="service-price">NT$ 2,200</div>
+                    </div>
+                </div>
+                
+                <div class="button-group">
+                    <button class="btn-next" onclick="nextStep()" data-translate="btn-next">Next Step</button>
+                </div>
+            </div>
+
+            <div class="step-content" id="step-2">
+                <h2 class="step-title" data-translate="step2-title">Select Date & Time</h2>
+                
+                <div class="datetime-container">
+                    <div class="input-group">
+                        <label data-translate="label-date">Select Date</label>
+                        <input type="date" id="appointmentDate" onchange="updateTimeSlots()">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label data-translate="label-time">Available Time Slots</label>
+                    <div class="time-slots" id="timeSlots"></div>
+                </div>
+                
+                <div class="button-group">
+                    <button class="btn-back" onclick="prevStep()" data-translate="btn-back">Back</button>
+                    <button class="btn-next" onclick="nextStep()" data-translate="btn-next">Next Step</button>
+                </div>
+            </div>
+
+            <div class="step-content" id="step-3">
+                <h2 class="step-title" data-translate="step3-title">Your Information</h2>
+                
+                <div class="summary-box">
+                    <div class="summary-item">
+                        <span class="summary-label" data-translate="summary-service">Service:</span>
+                        <span class="summary-value" id="summaryService">-</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label" data-translate="summary-date">Date:</span>
+                        <span class="summary-value" id="summaryDate">-</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label" data-translate="summary-time">Time:</span>
+                        <span class="summary-value" id="summaryTime">-</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label" data-translate="summary-price">Total:</span>
+                        <span class="summary-value" id="summaryPrice">-</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label data-translate="label-name">Full Name</label>
+                    <input type="text" id="customerName" placeholder="" required>
+                </div>
+
+                <div class="input-group">
+                    <label data-translate="label-email">Email</label>
+                    <input type="email" id="customerEmail" placeholder="" required>
+                </div>
+
+                <div class="input-group">
+                    <label data-translate="label-phone">Phone Number</label>
+                    <input type="tel" id="customerPhone" placeholder="" required>
+                </div>
+
+                <div class="loading-spinner" id="loadingSpinner"></div>
+                
+                <div class="button-group">
+                    <button class="btn-back" onclick="prevStep()" data-translate="btn-back">Back</button>
+                    <button class="btn-submit" onclick="submitBooking()" data-translate="btn-submit">Confirm Booking</button>
+                </div>
+            </div>
+
+            <div class="step-content" id="success-screen" style="display: none;">
+                <div class="success-message">
+                    <div class="success-icon">✨</div>
+                    <h2 class="success-title" data-translate="success-title">Booking Confirmed!</h2>
+                    <p class="success-text" data-translate="success-text">Your appointment has been successfully booked. We've sent a confirmation email to your address.</p>
+                    <button class="btn-new-booking" onclick="resetBooking()" data-translate="btn-new-booking">Make Another Booking</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== CONFIGURATION SECTION =====
+        // IMPORTANT: Update these settings to connect to your services
+        
+        const CONFIG = {
+            // Option 1: Email Service (EmailJS - Free)
+            // Sign up at https://www.emailjs.com/
+            emailjs: {
+                enabled: false, // Set to true when you have EmailJS credentials
+                serviceId: 'YOUR_EMAILJS_SERVICE_ID',
+                templateId: 'YOUR_EMAILJS_TEMPLATE_ID',
+                publicKey: 'YOUR_EMAILJS_PUBLIC_KEY'
+            },
+            
+            // Option 2: Google Forms
+            // Create a form and get the form URL
+            googleForms: {
+                enabled: false, // Set to true to use Google Forms
+                formUrl: 'YOUR_GOOGLE_FORM_URL'
+            },
+            
+            // Option 3: WhatsApp notification
+            whatsapp: {
+                enabled: true, // Easy to set up!
+                phoneNumber: '886912345678' // Your WhatsApp number with country code
+            },
+            
+            // Your business email
+            businessEmail: 'info@blossomnails.com'
+        };
+
+        // ===== TRANSLATIONS =====
+        const translations = {
+            en: {
+                'site-title': 'Blossom Nails',
+                'site-subtitle': 'Premium Nail Experience in Taipei',
+                'step1-label': 'Choose Service',
+                'step2-label': 'Select Date & Time',
+                'step3-label': 'Your Information',
+                'step1-title': 'Choose Your Service',
+                'step2-title': 'Select Date & Time',
+                'step3-title': 'Your Information',
+                'service-classic-name': 'Classic Manicure',
+                'service-classic-details': 'Essential nail care with polish',
+                'service-gel-name': 'Gel Manicure',
+                'service-gel-details': 'Long-lasting gel polish',
+                'service-luxury-name': 'Luxury Spa Treatment',
+                'service-luxury-details': 'Premium care with massage',
+                'service-art-name': 'Nail Art Design',
+                'service-art-details': 'Custom creative designs',
+                'label-date': 'Select Date',
+                'label-time': 'Available Time Slots',
+                'label-name': 'Full Name',
+                'label-email': 'Email',
+                'label-phone': 'Phone Number',
+                'summary-service': 'Service:',
+                'summary-date': 'Date:',
+                'summary-time': 'Time:',
+                'summary-price': 'Total:',
+                'btn-back': 'Back',
+                'btn-next': 'Next Step',
+                'btn-submit': 'Confirm Booking',
+                'success-title': 'Booking Confirmed!',
+                'success-text': "Your appointment has been successfully booked. We've sent a confirmation to your contact details.",
+                'btn-new-booking': 'Make Another Booking'
+            },
+            ko: {
+                'site-title': 'Blossom Nails',
+                'site-subtitle': '타이베이 프리미엄 네일 살롱',
+                'step1-label': '서비스 선택',
+                'step2-label': '날짜 및 시간',
+                'step3-label': '고객 정보',
+                'step1-title': '서비스를 선택하세요',
+                'step2-title': '날짜 및 시간 선택',
+                'step3-title': '고객 정보 입력',
+                'service-classic-name': '클래식 매니큐어',
+                'service-classic-details': '기본 네일 케어와 폴리시',
+                'service-gel-name': '젤 매니큐어',
+                'service-gel-details': '오래 지속되는 젤 폴리시',
+                'service-luxury-name': '럭셔리 스파 트리트먼트',
+                'service-luxury-details': '마사지가 포함된 프리미엄 케어',
+                'service-art-name': '네일 아트 디자인',
+                'service-art-details': '맞춤형 창의적 디자인',
+                'label-date': '날짜 선택',
+                'label-time': '예약 가능한 시간',
+                'label-name': '이름',
+                'label-email': '이메일',
+                'label-phone': '전화번호',
+                'summary-service': '서비스:',
+                'summary-date': '날짜:',
+                'summary-time': '시간:',
+                'summary-price': '총액:',
+                'btn-back': '이전',
+                'btn-next': '다음 단계',
+                'btn-submit': '예약 확정',
+                'success-title': '예약 완료!',
+                'success-text': '예약이 성공적으로 완료되었습니다. 확인 메시지를 보내드렸습니다.',
+                'btn-new-booking': '새 예약하기'
+            },
+            ja: {
+                'site-title': 'Blossom Nails',
+                'site-subtitle': '台北プレミアムネイルサロン',
+                'step1-label': 'サービス選択',
+                'step2-label': '日時選択',
+                'step3-label': 'お客様情報',
+                'step1-title': 'サービスを選択してください',
+                'step2-title': '日時を選択してください',
+                'step3-title': 'お客様情報を入力してください',
+                'service-classic-name': 'クラシックマニキュア',
+                'service-classic-details': '基本的なネイルケアとポリッシュ',
+                'service-gel-name': 'ジェルマニキュア',
+                'service-gel-details': '長持ちするジェルポリッシュ',
+                'service-luxury-name': 'ラグジュアリースパトリートメント',
+                'service-luxury-details': 'マッサージ付きプレミアムケア',
+                'service-art-name': 'ネイルアートデザイン',
+                'service-art-details': 'カスタムクリエイティブデザイン',
+                'label-date': '日付を選択',
+                'label-time': '予約可能な時間',
+                'label-name': 'お名前',
+                'label-email': 'メールアドレス',
+                'label-phone': '電話番号',
+                'summary-service': 'サービス:',
+                'summary-date': '日付:',
+                'summary-time': '時間:',
+                'summary-price': '合計:',
+                'btn-back': '戻る',
+                'btn-next': '次のステップ',
+                'btn-submit': '予約を確定',
+                'success-title': '予約完了！',
+                'success-text': 'ご予約が正常に完了しました。確認メッセージをお送りしました。',
+                'btn-new-booking': '新しい予約をする'
+            }
+        };
+
+        let currentLang = 'en';
+        let currentStep = 1;
+        let bookingData = {
+            service: null,
+            serviceName: '',
+            price: 0,
+            date: null,
+            time: null,
+            name: '',
+            email: '',
+            phone: ''
+        };
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    if (element.tagName === 'INPUT') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+        }
+
+        function selectService(card, serviceType, price) {
+            document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            
+            bookingData.service = serviceType;
+            bookingData.serviceName = card.querySelector('.service-name').textContent;
+            bookingData.price = price;
+        }
+
+        function nextStep() {
+            if (currentStep === 1) {
+                if (!bookingData.service) {
+                    alert(currentLang === 'en' ? 'Please select a service' : 
+                          currentLang === 'ko' ? '서비스를 선택해주세요' : 
+                          'サービスを選択してください');
+                    return;
+                }
+            } else if (currentStep === 2) {
+                if (!bookingData.date || !bookingData.time) {
+                    alert(currentLang === 'en' ? 'Please select date and time' : 
+                          currentLang === 'ko' ? '날짜와 시간을 선택해주세요' : 
+                          '日時を選択してください');
+                    return;
+                }
+                updateSummary();
+            }
+
+            document.getElementById(`step-${currentStep}`).classList.remove('active');
+            document.getElementById(`indicator-${currentStep}`).classList.add('completed');
+            currentStep++;
+            document.getElementById(`step-${currentStep}`).classList.add('active');
+            document.getElementById(`indicator-${currentStep}`).classList.add('active');
+            
+            updateProgress();
+        }
+
+        function prevStep() {
+            document.getElementById(`step-${currentStep}`).classList.remove('active');
+            document.getElementById(`indicator-${currentStep}`).classList.remove('active');
+            currentStep--;
+            document.getElementById(`step-${currentStep}`).classList.add('active');
+            document.getElementById(`indicator-${currentStep}`).classList.remove('completed');
+            
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const progress = ((currentStep - 1) / 2) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+
+        function setupDatePicker() {
+            const dateInput = document.getElementById('appointmentDate');
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            
+            const maxDate = new Date(today);
+            maxDate.setDate(maxDate.getDate() + 60);
+            
+            dateInput.min = tomorrow.toISOString().split('T')[0];
+            dateInput.max = maxDate.toISOString().split('T')[0];
+            dateInput.value = tomorrow.toISOString().split('T')[0];
+            
+            updateTimeSlots();
+        }
+
+        function updateTimeSlots() {
+            const dateInput = document.getElementById('appointmentDate');
+            bookingData.date = dateInput.value;
+            
+            const timeSlotsContainer = document.getElementById('timeSlots');
+            timeSlotsContainer.innerHTML = '';
+            
+            const slots = [
+                '09:00', '10:00', '11:00', '12:00',
+                '13:00', '14:00', '15:00', '16:00',
+                '17:00', '18:00', '19:00', '20:00'
+            ];
+            
+            slots.forEach(time => {
+                const slot = document.createElement('div');
+                slot.className = 'time-slot';
+                slot.textContent = time;
+                
+                if (Math.random() > 0.7) {
+                    slot.classList.add('unavailable');
+                } else {
+                    slot.onclick = () => selectTimeSlot(slot, time);
+                }
+                
+                timeSlotsContainer.appendChild(slot);
+            });
+        }
+
+        function selectTimeSlot(slot, time) {
+            if (slot.classList.contains('unavailable')) return;
+            
+            document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+            slot.classList.add('selected');
+            bookingData.time = time;
+        }
+
+        function updateSummary() {
+            document.getElementById('summaryService').textContent = bookingData.serviceName;
+            document.getElementById('summaryDate').textContent = bookingData.date;
+            document.getElementById('summaryTime').textContent = bookingData.time;
+            document.getElementById('summaryPrice').textContent = `NT$ ${bookingData.price.toLocaleString()}`;
+        }
+
+        async function submitBooking() {
+            bookingData.name = document.getElementById('customerName').value;
+            bookingData.email = document.getElementById('customerEmail').value;
+            bookingData.phone = document.getElementById('customerPhone').value;
+            
+            if (!bookingData.name || !bookingData.email || !bookingData.phone) {
+                alert(currentLang === 'en' ? 'Please fill in all fields' : 
+                      currentLang === 'ko' ? '모든 필드를 입력해주세요' : 
+                      'すべての項目を入力してください');
+                return;
+            }
+
+            // Show loading
+            document.getElementById('loadingSpinner').style.display = 'block';
+            document.querySelector('.btn-submit').disabled = true;
+
+            // Prepare booking message
+            const message = `
+🌸 NEW BOOKING - Blossom Nails 🌸
+
+📋 Service: ${bookingData.serviceName}
+📅 Date: ${bookingData.date}
+⏰ Time: ${bookingData.time}
+💰 Price: NT$ ${bookingData.price}
+
+👤 Customer Details:
+Name: ${bookingData.name}
+Email: ${bookingData.email}
+Phone: ${bookingData.phone}
+            `.trim();
+
+            // Try different notification methods
+            let success = false;
+
+            // Method 1: WhatsApp
+            if (CONFIG.whatsapp.enabled) {
+                const whatsappUrl = `https://wa.me/${CONFIG.whatsapp.phoneNumber}?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+                success = true;
+            }
+
+            // Method 2: EmailJS
+            if (CONFIG.emailjs.enabled) {
+                try {
+                    await sendEmailNotification(bookingData);
+                    success = true;
+                } catch (error) {
+                    console.error('Email notification failed:', error);
+                }
+            }
+
+            // Method 3: Google Forms
+            if (CONFIG.googleForms.enabled) {
+                submitToGoogleForms(bookingData);
+                success = true;
+            }
+
+            // Save to localStorage as backup
+            saveBookingLocally(bookingData);
+
+            // Hide loading
+            document.getElementById('loadingSpinner').style.display = 'none';
+            document.querySelector('.btn-submit').disabled = false;
+
+            // Show success
+            document.getElementById('step-3').style.display = 'none';
+            document.getElementById('success-screen').style.display = 'block';
+            document.querySelector('.progress-container').style.display = 'none';
+
+            console.log('Booking submitted:', bookingData);
+        }
+
+        function saveBookingLocally(data) {
+            const bookings = JSON.parse(localStorage.getItem('nailBookings') || '[]');
+            bookings.push({
+                ...data,
+                timestamp: new Date().toISOString()
+            });
+            localStorage.setItem('nailBookings', JSON.stringify(bookings));
+        }
+
+        async function sendEmailNotification(data) {
+            // This requires EmailJS setup
+            // Visit https://www.emailjs.com/ to get your credentials
+            if (!CONFIG.emailjs.enabled) return;
+
+            const emailParams = {
+                to_email: CONFIG.businessEmail,
+                customer_name: data.name,
+                customer_email: data.email,
+                customer_phone: data.phone,
+                service: data.serviceName,
+                date: data.date,
+                time: data.time,
+                price: data.price
+            };
+
+            // Uncomment when you have EmailJS set up:
+            // await emailjs.send(
+            //     CONFIG.emailjs.serviceId,
+            //     CONFIG.emailjs.templateId,
+            //     emailParams,
+            //     CONFIG.emailjs.publicKey
+            // );
+        }
+
+        function submitToGoogleForms(data) {
+            // This would submit to your Google Form
+            // You'll need to map your form field IDs
+            if (!CONFIG.googleForms.enabled) return;
+            
+            // Example (you'll need your actual form entry IDs):
+            // const formData = new FormData();
+            // formData.append('entry.123456', data.name);
+            // formData.append('entry.234567', data.email);
+            // fetch(CONFIG.googleForms.formUrl, { method: 'POST', body: formData });
+        }
+
+        function resetBooking() {
+            currentStep = 1;
+            bookingData = {
+                service: null,
+                serviceName: '',
+                price: 0,
+                date: null,
+                time: null,
+                name: '',
+                email: '',
+                phone: ''
+            };
+            
+            document.getElementById('success-screen').style.display = 'none';
+            document.getElementById('step-3').style.display = 'none';
+            document.getElementById('step-1').classList.add('active');
+            document.querySelector('.progress-container').style.display = 'flex';
+            
+            document.querySelectorAll('.step-indicator').forEach(ind => {
+                ind.classList.remove('active', 'completed');
+            });
+            document.getElementById('indicator-1').classList.add('active');
+            
+            document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
+            document.getElementById('customerName').value = '';
+            document.getElementById('customerEmail').value = '';
+            document.getElementById('customerPhone').value = '';
+            
+            updateProgress();
+        }
+
+        window.addEventListener('load', () => {
+            setupDatePicker();
+        });
+    </script>
+</body>
+</html>
