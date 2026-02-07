@@ -881,6 +881,28 @@
             }
         };
 
+        // Service name mappings for each language
+        const serviceNames = {
+            en: {
+                'classic': 'Classic Manicure',
+                'gel': 'Gel Manicure',
+                'luxury': 'Luxury Spa Treatment',
+                'art': 'Nail Art Design'
+            },
+            ko: {
+                'classic': '클래식 매니큐어',
+                'gel': '젤 매니큐어',
+                'luxury': '럭셔리 스파 트리트먼트',
+                'art': '네일 아트 디자인'
+            },
+            ja: {
+                'classic': 'クラシックマニキュア',
+                'gel': 'ジェルマニキュア',
+                'luxury': 'ラグジュアリースパトリートメント',
+                'art': 'ネイルアートデザイン'
+            }
+        };
+
         let currentLang = 'en';
         let currentStep = 1;
         let bookingData = {
@@ -909,6 +931,14 @@
                     }
                 }
             });
+            
+            // Update service name if already selected
+            if (bookingData.service && currentStep >= 2) {
+                bookingData.serviceName = serviceNames[currentLang][bookingData.service];
+                if (currentStep === 3) {
+                    updateSummary();
+                }
+            }
         }
 
         function selectService(card, serviceType, price) {
@@ -916,7 +946,7 @@
             card.classList.add('selected');
             
             bookingData.service = serviceType;
-            bookingData.serviceName = card.querySelector('.service-name').textContent;
+            bookingData.serviceName = serviceNames[currentLang][serviceType];
             bookingData.price = price;
         }
 
@@ -1015,7 +1045,8 @@
         }
 
         function updateSummary() {
-            document.getElementById('summaryService').textContent = bookingData.serviceName;
+            const translatedServiceName = serviceNames[currentLang][bookingData.service];
+            document.getElementById('summaryService').textContent = translatedServiceName;
             document.getElementById('summaryDate').textContent = bookingData.date;
             document.getElementById('summaryTime').textContent = bookingData.time;
             document.getElementById('summaryPrice').textContent = `NT$ ${bookingData.price.toLocaleString()}`;
